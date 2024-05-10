@@ -9,7 +9,7 @@ const MusicSection = ({ artistName, sectionId }) => {
         const response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${artistName}`)
         if (response.ok) {
           const { data } = await response.json()
-          setSongs(data.slice(0, 8))
+          setSongs(data.slice(0, 4))
         } else {
           throw new Error("Failed to fetch songs")
         }

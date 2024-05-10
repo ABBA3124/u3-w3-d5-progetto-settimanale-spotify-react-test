@@ -29,7 +29,7 @@ const Player = () => {
                   <Image src={repeat} alt="repeat" />
                 </Nav.Link>
               </div>
-              <div class="progress mt-3">
+              <div className="progress mt-3">
                 <div role="progressbar"></div>
               </div>
             </Col>
