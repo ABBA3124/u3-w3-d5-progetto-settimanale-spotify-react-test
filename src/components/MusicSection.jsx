@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
-import { setCurrentSong } from "../reducer/playerSlice"
+import { useDispatch, useSelector } from "react-redux"
+import { setCurrentSong, toggleLikeSong } from "../reducer/playerSlice"
 
 const MusicSection = ({ artistName, sectionId }) => {
   const [songs, setSongs] = useState([])
   const dispatch = useDispatch()
+  const likedSongs = useSelector((state) => state.player.likedSongs)
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -14,10 +15,10 @@ const MusicSection = ({ artistName, sectionId }) => {
           const { data } = await response.json()
           setSongs(data.slice(0, 4))
         } else {
-          throw new Error("fetch ricerca song fallita")
+          throw new Error("errore caricamento fetch song")
         }
       } catch (error) {
-        console.error("errore nella fetch song:", error)
+        console.error("errore nella fetch:", error)
       }
     }
 
@@ -33,6 +34,12 @@ const MusicSection = ({ artistName, sectionId }) => {
             Track: "{song.title}"<br />
             Artist: {song.artist.name}
           </p>
+          <button
+            className={`btn ${likedSongs[song.id] ? "btn-success" : "btn-outline-secondary"}`}
+            onClick={() => dispatch(toggleLikeSong(song.id))}
+          >
+            {likedSongs[song.id] ? "🤍" : "❤️"}
+          </button>
         </div>
       ))}
     </div>
