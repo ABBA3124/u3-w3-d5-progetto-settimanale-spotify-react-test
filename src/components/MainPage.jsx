@@ -1,6 +1,7 @@
 import { Nav, Col, Row } from "react-bootstrap"
+import MusicSection from "./MusicSection"
 
-const MainPage = () => {
+const MainPage = ({ searchQuery }) => {
   return (
     <Col md={9} className="offset-md-3 mainPage">
       <Row>
@@ -12,28 +13,31 @@ const MainPage = () => {
           <Nav.Link href="#DISCOVER">DISCOVER</Nav.Link>
         </Col>
       </Row>
+      {searchQuery && (
+        <Row>
+          <Col sm={10}>
+            <h2 className="text-white">Risultati Ricerca per {searchQuery}</h2>
+            <MusicSection artistName={searchQuery} sectionId="searchResults" />
+          </Col>
+        </Row>
+      )}
+
       <Row>
         <Col sm={10}>
-          <div id="rock">
-            <h2>Rock classNameics</h2>
-            <Row xs={1} sm={2} lg={3} xl={4} className="imgLinks py-3" id="rockSection"></Row>
-          </div>
+          <h2 className="text-white">Rock Classics</h2>
+          <MusicSection artistName="queen" sectionId="rockSection" />
         </Col>
       </Row>
       <Row>
         <Col sm={10}>
-          <div id="pop">
-            <h2>Pop Culture</h2>
-            <Row xs={1} sm={2} lg={3} xl={4} className="imgLinks py-3" id="popSection"></Row>
-          </div>
+          <h2 className="text-white">Pop Culture</h2>
+          <MusicSection artistName="katyperry" sectionId="popSection" />
         </Col>
       </Row>
       <Row>
         <Col sm={10}>
-          <div id="hiphop">
-            <h2>#HipHop</h2>
-            <Row xs={1} sm={2} lg={3} xl={4} className="imgLinks py-3" id="hipHopSection"></Row>
-          </div>
+          <h2 className="text-white">HipHop</h2>
+          <MusicSection artistName="eminem" sectionId="hipHopSection" />
         </Col>
       </Row>
     </Col>

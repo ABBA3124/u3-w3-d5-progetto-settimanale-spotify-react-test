@@ -1,7 +1,15 @@
 import logospotify from "../assets/logo/logo.png"
 import { Container, Nav, Navbar, Col, Image, NavbarToggle, InputGroup, Form, Button } from "react-bootstrap"
+import React, { useState } from "react"
 
-const AsideBar = () => {
+const AsideBar = ({ onSearch }) => {
+  const [query, setQuery] = useState("")
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    onSearch(query)
+  }
+
   return (
     <Col sm={2}>
       <Navbar expand="md" className="fixed-left justify-content-between" id="sidebar">
@@ -31,13 +39,16 @@ const AsideBar = () => {
                   </Nav.Link>
                 </li>
                 <li>
-                  <InputGroup className="mt-3">
-                    <Form.Control placeholder="Search" aria-label="Search" />
-                    <div className="input-group-append">
-                      <Button variant="outline-secondary" className="btn-sm h-100">
-                        GO
-                      </Button>
-                    </div>
+                  <InputGroup className="mt-3" onSubmit={handleSearch}>
+                    <Form.Control
+                      placeholder="Search"
+                      aria-label="Search"
+                      value={query}
+                      onChange={(e) => setQuery(e.target.value)}
+                    />
+                    <Button variant="outline-secondary" className="btn-sm h-100" onClick={handleSearch}>
+                      GO
+                    </Button>
                   </InputGroup>
                 </li>
               </ul>
