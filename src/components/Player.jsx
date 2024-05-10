@@ -4,8 +4,11 @@ import prev from "../assets/playerbuttons/prev.png"
 import repeat from "../assets/playerbuttons/repeat.png"
 import shuffle from "../assets/playerbuttons/shuffle.png"
 import { Container, Row, Col, Image, Nav } from "react-bootstrap"
+import { useSelector } from "react-redux"
 
 const Player = () => {
+  const song = useSelector((state) => state.player.currentSong)
+
   return (
     <Container fluid className="fixed-bottom bg-container pt-1">
       <Row className="h-100">
@@ -30,8 +33,13 @@ const Player = () => {
                 </Nav.Link>
               </div>
               <div className="progress mt-3">
-                <div role="progressbar"></div>
+                <div className="progress-bar" role="progressbar" style={{ width: "50%" }}></div>
               </div>
+              {song && (
+                <div className="text-white mb-5 w-100">
+                  <strong>Playing:</strong> {song.title} <strong>Artist:</strong> {song.artist.name}
+                </div>
+              )}
             </Col>
           </Row>
         </Col>
