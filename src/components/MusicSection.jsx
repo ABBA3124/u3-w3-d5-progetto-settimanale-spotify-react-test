@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { setCurrentSong, toggleLikeSong, setSearchResults } from "../reducer/playerSlice"
+import { setCurrentSong, toggleLikeSong, setSearchResults, addToPlaylist } from "../reducer/playerSlice"
 
 const MusicSection = ({ artistName, sectionId }) => {
   const [songs, setSongs] = useState([])
@@ -40,12 +40,35 @@ const MusicSection = ({ artistName, sectionId }) => {
             Track: "{song.title}"<br />
             Artist: {song.artist.name}
           </p>
-          <button
-            className={`btn ${likedSongs[song.id] ? "btn-success" : "btn-outline-secondary"}`}
-            onClick={() => dispatch(toggleLikeSong(song.id))}
-          >
-            {likedSongs[song.id] ? "🤍" : "❤️"}
-          </button>
+          <div className="d-flex flex-column align-items-center">
+            <div className="d-flex align-items-center  ">
+              <button
+                className={`btn me-1 mt-1 ${likedSongs[song.id] ? "btn-success" : "btn-outline-secondary"}`}
+                onClick={() => dispatch(toggleLikeSong(song.id))}
+              >
+                {likedSongs[song.id] ? "🤍" : "❤️"}
+              </button>
+              <button
+                className="btn btn-primary mt-1"
+                onClick={() => dispatch(addToPlaylist({ playlistName: "preferite", songId: song.id }))}
+              >
+                + Preferite
+              </button>
+            </div>
+            <button
+              className="btn btn-secondary mt-1"
+              onClick={() => dispatch(addToPlaylist({ playlistName: "allenamento", songId: song.id }))}
+            >
+              + Allenamento
+            </button>
+            <button
+              className="btn btn-secondary mt-1"
+              onClick={() => dispatch(addToPlaylist({ playlistName: "ABBA", songId: song.id }))} // In questo caso ne crea una nuova dato che "ABBA" non esiste nell'oggetto playlist  e la chiamerà "ABBA"
+            >
+              + ABBA per prova{" "}
+              {/* lasciata appositamente per far vedere che se si clicca verifica che non esiste nessuna playlist con questo nome e di conseguenza ne crea una il tutto accade nel reducer   */}
+            </button>
+          </div>
         </div>
       ))}
     </div>
