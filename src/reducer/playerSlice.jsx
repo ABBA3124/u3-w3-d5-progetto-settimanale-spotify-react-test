@@ -5,6 +5,7 @@ export const playerSlice = createSlice({
   initialState: {
     currentSong: null,
     likedSongs: {}, //contenitore mi piace
+    searchResults: {},
   },
   reducers: {
     setCurrentSong: (state, action) => {
@@ -14,9 +15,12 @@ export const playerSlice = createSlice({
       const songId = action.payload
       state.likedSongs[songId] = !state.likedSongs[songId]
     },
+    setSearchResults: (state, action) => {
+      state.searchResults = action.payload // Aggiorna i risultati di ricerca
+    },
   },
 })
 
-export const { setCurrentSong, toggleLikeSong } = playerSlice.actions
+export const { setCurrentSong, toggleLikeSong, setSearchResults } = playerSlice.actions
 
 export default playerSlice.reducer
