@@ -47,7 +47,7 @@ const AsideBar = ({ onSearch }) => {
                       value={query}
                       onChange={(e) => setQuery(e.target.value)}
                     />
-                    <Button variant="outline-secondary" className="btn-sm h-100" onClick={handleSearch}>
+                    <Button variant="outline-secondary" className="btn-sm" onClick={handleSearch}>
                       GO
                     </Button>
                   </InputGroup>
