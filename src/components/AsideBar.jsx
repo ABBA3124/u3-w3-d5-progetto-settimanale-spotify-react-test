@@ -1,6 +1,7 @@
 import logospotify from "../assets/logo/logo.png"
 import { Container, Nav, Navbar, Col, Image, NavbarToggle, InputGroup, Form, Button } from "react-bootstrap"
 import React, { useState } from "react"
+import "../App.css"
 
 const AsideBar = ({ onSearch }) => {
   const [query, setQuery] = useState("")
@@ -56,12 +57,12 @@ const AsideBar = ({ onSearch }) => {
           </Navbar.Collapse>
         </Container>
         <div className="nav-btn">
-          <Button variant="" className="btn signup-btn">
+          <button variant="" className=" signup-btn">
             Sign Up
-          </Button>
-          <Button variant="" className="btn login-btn">
+          </button>
+          <button variant="" className=" login-btn">
             Login
-          </Button>
+          </button>
           <Nav.Link href="#Cookie Policy">Cookie Policy</Nav.Link> | <Nav.Link href="#Privacy"> Privacy</Nav.Link>
         </div>
       </Navbar>

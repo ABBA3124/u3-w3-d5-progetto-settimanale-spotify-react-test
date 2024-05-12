@@ -32,7 +32,7 @@ const Player = () => {
                   <Image src={repeat} alt="repeat" />
                 </Nav.Link>
               </div>
-              <div className="progress mt-3">
+              <div className="progress mt-2">
                 <div className="progress-bar" role="progressbar" style={{ width: "50%" }}></div>
               </div>
               {song && (
